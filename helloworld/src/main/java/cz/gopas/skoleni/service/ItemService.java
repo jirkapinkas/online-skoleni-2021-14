@@ -4,6 +4,7 @@ import cz.gopas.skoleni.repository.DummyItemRepository;
 import cz.gopas.skoleni.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +13,8 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-//    public ItemService(DummyItemRepository itemRepository) {
-//        this.itemRepository = itemRepository;
+//   public ItemService(ItemRepository jdbcItemRepository) {
+//        this.itemRepository = jdbcItemRepository;
 //    }
 
     public String getItemCount() {
