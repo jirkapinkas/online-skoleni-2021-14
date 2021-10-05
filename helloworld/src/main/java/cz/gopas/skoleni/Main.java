@@ -5,6 +5,8 @@ import cz.gopas.skoleni.service.ItemService;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
+
 @Configuration
 @ComponentScan // skenuje aktualni balicek a vsechny podbalicky
 public class Main {
@@ -12,17 +14,23 @@ public class Main {
     @Profile("jdbc")
     @Bean
     public HikariDataSource dataSource() {
-        HikariDataSource ds = new HikariDataSource();
-        ds.setJdbcUrl("jdbc:hsqldb:hsql://localhost/eshop");
-        ds.setUsername("sa");
-        ds.setPassword("");
-        return ds;
+        var dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:hsqldb:hsql://localhost/eshop");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        return dataSource;
     }
+
+//    @Profile("jdbc")
+//    @Bean
+//    public JdbcTemplate jdbcTemplate() {
+//        return new JdbcTemplate(dataSource());
+//    }
 
     @Profile("jdbc")
     @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource()); // TODO vratit se sem!!!
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 
     public static void main(String[] args) {
