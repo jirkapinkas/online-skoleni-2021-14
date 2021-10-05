@@ -2,6 +2,7 @@ package cz.gopas.skoleni;
 
 import com.zaxxer.hikari.HikariDataSource;
 import cz.gopas.skoleni.service.ItemService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -13,7 +14,8 @@ public class Main {
 
     @Profile("jdbc")
     @Bean
-    public HikariDataSource dataSource() {
+    public HikariDataSource dataSource(@Value("${java.version}") String javaVersion) {
+        System.out.println("java version = " + javaVersion);
         var dataSource = new HikariDataSource();
         dataSource.setJdbcUrl("jdbc:hsqldb:hsql://localhost/eshop");
         dataSource.setUsername("sa");
