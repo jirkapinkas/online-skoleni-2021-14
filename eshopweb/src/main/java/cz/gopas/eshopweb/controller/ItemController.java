@@ -1,5 +1,6 @@
 package cz.gopas.eshopweb.controller;
 
+import cz.gopas.eshopweb.dto.ItemDto;
 import cz.gopas.eshopweb.entity.Item;
 import cz.gopas.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,13 @@ public class ItemController {
 
     // http://localhost:8080/item
     @GetMapping
-    public List<Item> items() {
+    public List<ItemDto> items() {
         return itemService.findAll();
     }
 
     // http://localhost:8080/item/1
     @GetMapping("/{id}")
-    public Optional<Item> item(@PathVariable int id) {
+    public Optional<ItemDto> item(@PathVariable int id) {
         return itemService.findById(id);
     }
 
