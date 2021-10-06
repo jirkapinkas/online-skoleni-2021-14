@@ -2,15 +2,15 @@ package cz.gopas.eshopweb.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class ItemDto {
+public class CategoryWithItemsDto {
 
     private int id;
 
     private String name;
 
-    private String description;
-
-    private double price;
+    private List<ItemDto> items;
 
 }

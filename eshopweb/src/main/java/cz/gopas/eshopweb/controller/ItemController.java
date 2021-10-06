@@ -1,7 +1,6 @@
 package cz.gopas.eshopweb.controller;
 
-import cz.gopas.eshopweb.dto.ItemDto;
-import cz.gopas.eshopweb.entity.Item;
+import cz.gopas.eshopweb.dto.ItemWithCategoryDto;
 import cz.gopas.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +20,13 @@ public class ItemController {
 
     // http://localhost:8080/item
     @GetMapping
-    public List<ItemDto> items() {
+    public List<ItemWithCategoryDto> items() {
         return itemService.findAll();
     }
 
     // http://localhost:8080/item/1
     @GetMapping("/{id}")
-    public Optional<ItemDto> item(@PathVariable int id) {
+    public Optional<ItemWithCategoryDto> item(@PathVariable int id) {
         return itemService.findById(id);
     }
 

@@ -1,7 +1,6 @@
 package cz.gopas.eshopweb.service;
 
-import cz.gopas.eshopweb.dto.ItemDto;
-import cz.gopas.eshopweb.entity.Item;
+import cz.gopas.eshopweb.dto.ItemWithCategoryDto;
 import cz.gopas.eshopweb.mapper.ItemMapper;
 import cz.gopas.eshopweb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +17,11 @@ public class ItemService {
 
     private final ItemMapper itemMapper;
 
-    public List<ItemDto> findAll() {
+    public List<ItemWithCategoryDto> findAll() {
         return itemMapper.toDto(itemRepository.findAll());
     }
 
-    public Optional<ItemDto> findById(int id) {
+    public Optional<ItemWithCategoryDto> findById(int id) {
         return itemRepository.findById(id)
                 .map(itemMapper::toDto);
     }
