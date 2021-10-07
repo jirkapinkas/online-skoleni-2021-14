@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +36,15 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     List<Item> findByName(String name, Pageable pageable);
 
     // 2. metody s anotaci @Query, do ktere se dava HQL (Hibernate Query Language)
+    @Transactional(readOnly = true)
     @Query("select i from Item i left join fetch i.category")
     List<Item> findAllFetchCategory();
 
+    @Transactional(readOnly = true)
     @Query("select i from Item i left join fetch i.category where i.id = ?1")
     Optional<Item> findByIdFetchCategory(int id);
 
+    @Transactional(readOnly = true)
     @Query(nativeQuery = true, value = "select count(*) from item")
     long countItems();
 

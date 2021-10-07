@@ -3,10 +3,7 @@ package cz.gopas.eshopweb.controller;
 import cz.gopas.eshopweb.dto.ItemWithCategoryDto;
 import cz.gopas.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +25,12 @@ public class ItemController {
     @GetMapping("/{id}")
     public Optional<ItemWithCategoryDto> item(@PathVariable int id) {
         return itemService.findById(id);
+    }
+
+    // http://localhost:8080/item/updateName?id=1&newName=Neco
+    @PostMapping("/updateName")
+    public void updateName(@RequestParam int id, @RequestParam String newName) {
+        itemService.updateName(id, newName);
     }
 
 }
