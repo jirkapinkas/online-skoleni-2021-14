@@ -1,8 +1,12 @@
 package cz.gopas.eshopweb.controller;
 
 import cz.gopas.eshopweb.dto.ItemWithCategoryDto;
+import cz.gopas.eshopweb.exception.NotFoundException;
+import cz.gopas.eshopweb.pojo.Message;
 import cz.gopas.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
