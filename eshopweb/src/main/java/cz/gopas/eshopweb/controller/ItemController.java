@@ -7,6 +7,7 @@ import cz.gopas.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/item")
 @RequiredArgsConstructor
+//@PreAuthorize("hasRole('USER')")
 public class ItemController {
 
     private final ItemService itemService;
